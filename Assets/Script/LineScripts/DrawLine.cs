@@ -1,4 +1,5 @@
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,11 +81,11 @@ public class DrawLine : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            //PrefabsCreator();
+            StartCoroutine(PrefabsCreator());
             LineStatus = LineStatus.Created;
             Time.timeScale = 1f;
             //Invoke(nameof(BreakLine), 3f);
-            
+
 
         }
 
@@ -131,6 +132,7 @@ public class DrawLine : MonoBehaviour
     }
 
 
+
     public void BreakLine()
     {
         _lineRenderer.positionCount = 0;
@@ -146,14 +148,63 @@ public class DrawLine : MonoBehaviour
     }
 
 
-    public void PrefabsCreator()
+    IEnumerator PrefabsCreator()
     {
+
 
         for (int i = 0; i < _positions.Count; i++)
         {
             Instantiate(PrefabCreated, _positions[i], Quaternion.identity);
+            yield return new WaitForSeconds(0.01f);
         }
-
+        
     }
+
+
+    //public static Vector3[] SmoothLine(Vector3[] points, int smoothness)
+    //{
+    //    if (points == null || points.Length < 4)
+    //    {
+    //        Debug.LogError("Not enough points to create a Catmull-Rom spline");
+    //        return points;
+    //    }
+
+    //    int segments = points.Length - 3;
+    //    int numVertices = segments * smoothness;
+
+    //    Vector3[] vertices = new Vector3[numVertices];
+    //    int vertexIndex = 0;
+
+    //    for (int i = 0; i < segments; i++)
+    //    {
+    //        for (int j = 0; j < smoothness; j++)
+    //        {
+    //            float t = (float)j / (float)smoothness;
+    //            vertices[vertexIndex] = CatmullRomSpline.Interpolate(points[i], points[i + 1], points[i + 2], points[i + 3], t);
+    //            vertexIndex++;
+    //        }
+    //    }
+
+    //    return vertices;
+    //}
+
+
+    //private static Vector3 Interpolate(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
+    //{
+    //    float t2 = t * t;
+    //    float t3 = t2 * t;
+
+    //    Vector3 v0 = (p2 - p0) / 2f;
+    //    Vector3 v1 = (p3 - p1) / 2f;
+
+    //    Vector3 a = 2 * t3 - 3 * t2 + 1;
+    //    Vector3 b = t3 - 2 * t2 + t;
+    //    Vector3 c = t3 - t2;
+    //    Vector3 d = -2 * t3 + 3 * t2;
+
+    //    return a * p1 + b * v0 + c * v1 + d * p2;
+    //}
+
+
 
 }
