@@ -53,7 +53,7 @@ public class DrawLine : MonoBehaviour
                     _lineRenderer.positionCount = _positions.Count;
                     _lineRenderer.SetPositions(_positions.ToArray());
                     _oldPoint = _pointer.position;
-                    _playerStats.DecrementMana(Time.deltaTime);
+                    //_playerStats.DecrementMana(Time.deltaTime);
                     GenerateMeshCollider();
                 }
             }
