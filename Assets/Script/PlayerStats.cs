@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private float _mana;
     [SerializeField] private ProgressBar _bar;
+    public Menu _menu;
     public float levelZatrat = 2f;
     void Start()
     {
@@ -24,5 +25,12 @@ public class PlayerStats : MonoBehaviour
         _mana += mana;
         _bar.ChangeValue(_mana);
         return true;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            _menu.OpenMenuWindow();
+        }
     }
 }

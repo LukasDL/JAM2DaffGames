@@ -8,6 +8,15 @@ public class PlayerMove : MonoBehaviour
     public float _speed = 4;
     public float _powerJump = 10;
     public bool _isGround = false;
+
+
+
+    public float checkLoseTimer = 1f;
+    public Transform[] _pointToSpawnEnemy;
+    public GameObject _prefabEnemy;
+    public float breakeToSpawnEnemy = 2f;
+    private bool loseIsActive = false;
+    
     private void Update()
     {
         if (_isGround)
@@ -16,6 +25,15 @@ public class PlayerMove : MonoBehaviour
             {
                 _rigidbody.AddForce(0f, _powerJump, 0f);
             }
+        }
+        if (_rigidbody.velocity.x <= 0.01f)
+        {
+            checkLoseTimer -= Time.deltaTime;
+        }
+        if (checkLoseTimer <= 0 && !loseIsActive)
+        {
+            StartCoroutine(Lose());
+            loseIsActive = true;
         }
     }
     void FixedUpdate()
@@ -33,5 +51,16 @@ public class PlayerMove : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         _isGround = false;
+    }
+    IEnumerator Lose()
+    {
+        while (true)
+        {
+            foreach (Transform t in _pointToSpawnEnemy)
+            {
+                Instantiate(_prefabEnemy, t.position, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(breakeToSpawnEnemy);
+        }
     }
 }

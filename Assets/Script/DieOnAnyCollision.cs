@@ -8,7 +8,7 @@ public class DieOnAnyCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(_prefabDie, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+            Instantiate(_prefabDie, transform.position, Quaternion.identity);
+            Destroy(gameObject);      
     }
 }
