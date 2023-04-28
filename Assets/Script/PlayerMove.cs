@@ -9,12 +9,11 @@ public class PlayerMove : MonoBehaviour
     public float _powerJump = 10;
     public bool _isGround = false;
 
-
-
-    public float checkLoseTimer = 1f;
+    public Menu _menu;
+    public float checkLoseTimer = 2f;
     public Transform[] _pointToSpawnEnemy;
     public GameObject _prefabEnemy;
-    public float breakeToSpawnEnemy = 2f;
+    public float _endGameTimer = 4f;
     private bool loseIsActive = false;
     
     private void Update()
@@ -29,7 +28,7 @@ public class PlayerMove : MonoBehaviour
         if (_rigidbody.velocity.x <= 0.01f)
         {
             checkLoseTimer -= Time.deltaTime;
-        }
+        } else 
         if (checkLoseTimer <= 0 && !loseIsActive)
         {
             StartCoroutine(Lose());
@@ -58,7 +57,9 @@ public class PlayerMove : MonoBehaviour
             {
                 Instantiate(_prefabEnemy, t.position, Quaternion.identity);
             }
-            yield return new WaitForSeconds(breakeToSpawnEnemy);
+            yield return new WaitForSeconds(_endGameTimer);
+
+            _menu.OpenMenuWindow();
         }
     }
 }
