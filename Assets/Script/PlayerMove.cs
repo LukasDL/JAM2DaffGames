@@ -38,11 +38,9 @@ public class PlayerMove : MonoBehaviour
     }
     void FixedUpdate()
     {
-
         Vector3 velocity = new Vector3(_speed, _rigidbody.velocity.y, 0.0f);
         _rigidbody.velocity = velocity;
         _rigidbody.AddForce(Vector3.down * 9.81f);
-
     }
     private void OnCollisionEnter(Collision collision)
     {

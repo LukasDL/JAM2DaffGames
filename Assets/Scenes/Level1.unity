@@ -355,7 +355,7 @@ MonoBehaviour:
   - {fileID: 200633430}
   _prefabEnemy: {fileID: 3251207257753705805, guid: 8fe83f6c39abd154daa0416af1cc9893,
     type: 3}
-  breakeToSpawnEnemy: 2
+  breakeToSpawnEnemy: 5
 --- !u!114 &235856254
 MonoBehaviour:
   m_ObjectHideFlags: 0
