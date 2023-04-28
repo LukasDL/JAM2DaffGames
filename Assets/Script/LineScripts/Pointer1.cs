@@ -10,7 +10,6 @@ public class Pointer1 : MonoBehaviour
         if (!other.GetComponent<DrawLine>())
         {
             playerLineStatus.LineStatus = LineStatus.Created;
-
         }
 
 
