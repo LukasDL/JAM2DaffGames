@@ -21,7 +21,7 @@ public class DrawLine : MonoBehaviour
     [Header("Prefabs Creator")]
     [SerializeField] private GameObject PrefabCreated;
 
-    public PlayerStats _playerStats;
+    //public PlayerStats _playerStats;
 
     public LineStatus LineStatus = LineStatus.None;
     private MeshCollider _collider;
@@ -47,12 +47,13 @@ public class DrawLine : MonoBehaviour
                 _collider.enabled = true;
                 if (Vector3.Distance(_pointer.position, _oldPoint) > stepPoint)
                 {
+                    //_playerStats.DecrementMana(Time.deltaTime);
 
                     _positions.Add(_pointer.position);
                     _lineRenderer.positionCount = _positions.Count;
                     _lineRenderer.SetPositions(_positions.ToArray());
                     _oldPoint = _pointer.position;
-                    _playerStats.DecrementMana(Time.deltaTime);
+                    //_playerStats.DecrementMana(Time.deltaTime);
                     GenerateMeshCollider();
                 }
             }
