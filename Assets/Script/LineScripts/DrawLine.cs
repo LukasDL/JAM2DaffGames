@@ -28,6 +28,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] public List<Vector3> PointsoCreate = new();
     [SerializeField] private GameObject PrefabCreated;
 
+    //public PlayerStats _playerStats;
 
     public LineStatus LineStatus = LineStatus.None;
     private MeshCollider _collider;
@@ -67,6 +68,7 @@ public class DrawLine : MonoBehaviour
                 _collider.enabled = true;
                 if (Vector3.Distance(position, _oldPoint) > stepPoint)
                 {
+                    //_playerStats.DecrementMana(Time.deltaTime);
 
                     _positions.Add(position);
                     _lineRenderer.positionCount = _positions.Count;
@@ -130,7 +132,6 @@ public class DrawLine : MonoBehaviour
         rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
     }
-
 
 
     public void BreakLine()
